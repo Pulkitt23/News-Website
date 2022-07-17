@@ -14,14 +14,14 @@ const newsdetails = document.getElementById("newsdetails");
 var newsDataArr = [];
 
 // apis 
-const API_KEY = "364beabd2fe4466784eb7e90ab8d67e8";
-const HEADLINES_NEWS = "https://newsapi.org/v2/top-headlines?country=in&apiKey=";
-const GENERAL_NEWS = "https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=";
-const BUSINESS_NEWS = "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=";
-const SPORTS_NEWS = "https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=";
-const ENTERTAINMENT_NEWS = "https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=";
-const TECHNOLOGY_NEWS = "https://newsapi.org/v2/top-headlines?country=in&category=technology&pageSize=8&apiKey=";
-const SEARCH_NEWS = "https://newsapi.org/v2/everything?q=";
+const API_KEY = "ed65366f20a7771ec02fa76d236ac99c";
+const HEADLINES_NEWS = "https://gnews.io/api/v4/top-headlines?country=in&category=breaking-news&token=";
+const GENERAL_NEWS = "https://gnews.io/api/v4/top-headlines?country=in&category=world&token=";
+const BUSINESS_NEWS = "https://gnews.io/api/v4/top-headlines?country=in&category=business&token=";
+const SPORTS_NEWS = "https://gnews.io/api/v4/top-headlines?country=in&category=sports&token=";
+const ENTERTAINMENT_NEWS = "https://gnews.io/api/v4/top-headlines?country=in&category=entertainment&token=";
+const TECHNOLOGY_NEWS = "https://gnews.io/api/v4/top-headlines?country=in&category=technology&token=";
+const SEARCH_NEWS = "https://gnews.io/api/v4/search?q=";
 
 window.onload = function() {
     newsType.innerHTML="<h4>Headlines</h4>";
@@ -162,7 +162,7 @@ const fetchQueryNews = async () => {
     if(newsQuery.value == null)
         return;
 
-    const response = await fetch(SEARCH_NEWS+encodeURIComponent(newsQuery.value)+"&apiKey="+API_KEY);
+    const response = await fetch(SEARCH_NEWS+encodeURIComponent(newsQuery.value)+"&token="+API_KEY);
     newsDataArr = [];
     if(response.status >= 200 && response.status < 300) {
         const myJson = await response.json();
@@ -199,7 +199,7 @@ function displayNews() {
         var image = document.createElement('img');
         image.setAttribute("height","matchparent");
         image.setAttribute("width","100%");
-        image.src=news.urlToImage;
+        image.src=news.image;
 
         var cardBody = document.createElement('div');
         
